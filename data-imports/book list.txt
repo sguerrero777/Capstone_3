@@ -1,0 +1,93 @@
+﻿Bookstore stock list
+
+
+1. *The Great Gatsby* by F. Scott Fitzgerald  
+2. *To Kill a Mockingbird* by Harper Lee  
+3. *1984* by George Orwell  
+4. *Pride and Prejudice* by Jane Austen  
+5. *The Catcher in the Rye* by J.D. Salinger  
+6. *The Lord of the Rings* by J.R.R. Tolkien  
+7. *The Hobbit* by J.R.R. Tolkien  
+8. *Harry Potter and the Sorcerer’s Stone* by J.K. Rowling  
+9. *Harry Potter and the Chamber of Secrets* by J.K. Rowling  
+10. *Harry Potter and the Prisoner of Azkaban* by J.K. Rowling  
+11. *The Hunger Games* by Suzanne Collins  
+12. *Catching Fire* by Suzanne Collins  
+13. *Mockingjay* by Suzanne Collins  
+14. *Dune* by Frank Herbert  
+15. *Brave New World* by Aldous Huxley  
+16. *Animal Farm* by George Orwell  
+17. *Of Mice and Men* by John Steinbeck  
+18. *East of Eden* by John Steinbeck  
+19. *The Road* by Cormac McCarthy  
+20. *The Handmaid’s Tale* by Margaret Atwood  
+21. *The Testaments* by Margaret Atwood  
+22. *A Song of Ice and Fire: A Game of Thrones* by George R.R. Martin  
+23. *A Clash of Kings* by George R.R. Martin  
+24. *A Storm of Swords* by George R.R. Martin  
+25. *Little Women* by Louisa May Alcott  
+26. *Jane Eyre* by Charlotte Brontë  
+27. *Wuthering Heights* by Emily Brontë  
+28. *The Alchemist* by Paulo Coelho  
+29. *Life of Pi* by Yann Martel  
+30. *The Kite Runner* by Khaled Hosseini  
+31. *A Thousand Splendid Suns* by Khaled Hosseini  
+32. *The Night Circus* by Erin Morgenstern  
+33. *Circe* by Madeline Miller  
+34. *The Song of Achilles* by Madeline Miller  
+35. *Big Little Lies* by Liane Moriarty  
+36. *The Seven Husbands of Evelyn Hugo* by Taylor Jenkins Reid  
+37. *Daisy Jones & The Six* by Taylor Jenkins Reid  
+38. *Malibu Rising* by Taylor Jenkins Reid  
+39. *Where the Crawdads Sing* by Delia Owens  
+40. *Verity* by Colleen Hoover  
+41. *Becoming* by Michelle Obama  
+42. *Educated* by Tara Westover  
+43. *The Immortal Life of Henrietta Lacks* by Rebecca Skloot  
+44. *Sapiens: A Brief History of Humankind* by Yuval Noah Harari  
+45. *Homo Deus: A Brief History of Tomorrow* by Yuval Noah Harari  
+46. *Atomic Habits* by James Clear  
+47. *The Power of Habit* by Charles Duhigg  
+48. *Thinking, Fast and Slow* by Daniel Kahneman  
+49. *Outliers* by Malcolm Gladwell  
+50. *The Tipping Point* by Malcolm Gladwell  
+51. *Blink* by Malcolm Gladwell  
+52. *Born a Crime* by Trevor Noah  
+53. *The Glass Castle* by Jeannette Walls  
+54. *Wild* by Cheryl Strayed  
+55. *Into the Wild* by Jon Krakauer  
+56. *Quiet: The Power of Introverts* by Susan Cain  
+57. *The Subtle Art of Not Giving a F*ck* by Mark Manson  
+58. *Everything is F*cked* by Mark Manson  
+59. *Can’t Hurt Me* by David Goggins  
+60. *Daring Greatly* by Brené Brown  
+61. *The Gifts of Imperfection* by Brené Brown  
+62. *Man’s Search for Meaning* by Viktor E. Frankl  
+63. *Meditations* by Marcus Aurelius  
+64. *The Art of War* by Sun Tzu  
+65. *A Brief History of Time* by Stephen Hawking  
+66. *Black Holes and Baby Universes* by Stephen Hawking  
+67. *Cosmos* by Carl Sagan  
+68. *The Body: A Guide for Occupants* by Bill Bryson  
+69. *A Short History of Nearly Everything* by Bill Bryson  
+70. *Guns, Germs, and Steel* by Jared Diamond  
+71. *Collapse* by Jared Diamond  
+72. *The Omnivore’s Dilemma* by Michael Pollan  
+73. *In Defense of Food* by Michael Pollan  
+74. *How Not to Die* by Michael Greger  
+75. *The Blue Zones* by Dan Buettner  
+76. *The Life-Changing Magic of Tidying Up* by Marie Kondo  
+77. *Spark Joy* by Marie Kondo  
+78. *Digital Minimalism* by Cal Newport  
+79. *Deep Work* by Cal Newport  
+80. *The 4-Hour Workweek* by Tim Ferriss  
+81. *The Four Agreements* by Don Miguel Ruiz  
+82. *The Secret* by Rhonda Byrne  
+83. *Rich Dad Poor Dad* by Robert Kiyosaki  
+84. *The Intelligent Investor* by Benjamin Graham  
+85. *You Are a Badass* by Jen Sincero  
+86. *Girl, Wash Your Face* by Rachel Hollis  
+87. *How to Win Friends and Influence People* by Dale Carnegie  
+88. *Seven Habits of Highly Effective People* by Stephen R. Covey  
+89. *Your Money or Your Life* by Vicki Robin  
+90. *On Writing* by Stephen King
