@@ -1,19 +1,20 @@
-# EmporiUm Capstone 3 with Power BI — ETL & Semantic Modeling Documentation
+# EmporiUm Capstone 3 with Power BI: ETL & Semantic Modeling Documentation
 
 **Project:** Capstone 3: Analysis with Power BI  
-**Datasets:** `Capstone3_Sample_Sales.xlsx` and 'book list.txt`
+**Datasets:** `Capstone3_Sample_Sales.xlsx` and `book list.txt`
 **Scope of Data:** 4-year sales data (2022–2025) 
 **Region:** South
+**Territories:** Florida, South Carolina, & Texas
 **Author:** Sharleen Guerrero  
 
 ---
 
 ## 1. Project Overview
 
-EmporiUm is a virtual student bookstore operating both in-store and online channels across multiple states. This document records all data cleaning, transformation, and modeling decisions made during the ETL phase of the Power BI capstone project.
+EmporiUm is a virtual student bookstore operating both in-store and online channels across multiple territories. This document records all data cleaning, transformation, and modeling decisions made during the ETL phase of the Power BI capstone project.
 
 **Audience for this report:** Regional director, territory managers, and store managers.  
-**Analysis goal:** Sales trends over time, performance by category, relative sales by state, and top-selling general books by author.
+**Analysis goal:** Sales trends over time, performance by category, relative sales by state, and top-selling general books by author for region.
 
 ---
 
@@ -38,38 +39,53 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 
 | Issue | Discovery Method | Resolution | Reasoning |
 |---|---|---|---|
-| Error values in Category column | Column Quality profiler — 14% errors | Replaced errors with "Art Supplies" | Cross-referenced Prod Num suffix (-A) against Inventory Categories and Products tables; confirmed match |
-| [next issue] | | | |
+| 143 Error values in Category column | Column Quality profiler found 15% errors for this column based on entire dataset | Replaced errors with "Art Supplies" | Cross-referenced Product Number suffix for all errors with Inventory Categories table. Each error ended in "-A" Suffix, confirming match wirth Art Supplies Product Numbers |
+| Column headers not promoted during import | Initial visual inspection | Promoted first row as headers | Source data had appropiately named headers that were not auto-detected |
+| Sale Amount stored as a decimal with floating-point precision | Column type inspection | Changed data type to Fixed Deciaml number rounded to 2 decimal places | Eliminates hyper-precise floating-point numbers and ensures appropiate currency values for future measures and visualization |
+| Join key column named Prod Num on import | Reviewing column names for naming conventions | Renamed column to "Product Number" | Normalized to match other tables and to meet naming conventions for clean relationship building |
 
 ### 3.2 Online Sales
 
 | Issue | Discovery Method | Resolution | Reasoning |
-|---|---|---|---|
-| [document issues found] | | | |
+| Date was split across Year, Month and Day columns| Initial visual inspection after import| Created a combined custom Date column using Date.From(#date([Year],[Month],[Day])) and dropped original three columns | A single date column per fact table is cleaner and required as the basis for time intelligence|
+| New merged date column defaulted to DateTime data type | Column inspection after custom column was created | Changed data type from DateTime to Date | Only date type is required for clean relationship to furture Date Table|
+| Join key column named Prod Num on import | Reviewing column names for naming conventions | Renamed column to "Product Number" | Normalized to match other tables and to meet naming conventions for clean relationship building |
 
 ### 3.3 Products
 
 | Issue | Discovery Method | Resolution | Reasoning |
 |---|---|---|---|
-| [document issues found] | | | |
+| Column headers not promoted during import | Initial visual inspection | Promoted first row as headers which automatically changed the columns to propert data types | Source data had named headers that were not auto-detected |
+| Join key column named Prod Num on import | Reviewing column names for naming conventions | Renamed column to "Product Number" | Established as standard join key name across all tables |
 
-### 3.4 Store Locations
+### 3.4 Inventory Categories
+
+| Issue | Discovery Method | Resolution | Reasoning |
+|---|---|---|---|
+| Column headers not promoted during import | Initial visual inspection | Promoted first row as headers, renamed columns to "Category" and "Description" and data types defaulted correctly | Source data had no headers, clear names improve readability in model |
+| "Technology" in Inventory Categories didn't match "Technology & Accessories" in Products | Cross-table value comparison | Renamed to "Technology & Accessories" | Exact match required for possible text-based join key between tables |
+
+
+### 3.5 Store Locations
+
+| Issue | Discovery Method | Resolution | Reasoning |
+| Column headers not promoted during import | Column headers not promoted during import | Promoted first row as headers | Source data had appropiately named headers that were not auto-detected |
+| Some State values appeared as abbreviations (MA, ME, CT, NY, MD) instead of full names | Column Quality + value distribution review | Replaced abbreviations with full state names (Massachusetts, Maine, Connecticut, New York, Maryland) | Ensures consistency with other tables (Online Sales, Management Team) and prevents mismatched joins or inconsistent slicer values |
+| Store ID column appeared at the end of the table | Personal preference for modeling clarity | Store ID column appeared at the end of the table | Personal preference for modeling clarity | Ensures consistency with other tables (Online Sales, Management Team) and prevents mismatched joins or inconsistent slicer values | Improves navigation and consistency across dimension tables (personal preference to have all keys at the beginning of table) |
+
+### 3.6 Management Team
 
 | Issue | Discovery Method | Resolution | Reasoning |
 |---|---|---|---|
 | [document issues found] | | | |
 
-### 3.5 Management Team
+### 3.7 General Books Reference
 
 | Issue | Discovery Method | Resolution | Reasoning |
 |---|---|---|---|
 | [document issues found] | | | |
 
-### 3.6 General Books Reference
-
-| Issue | Discovery Method | Resolution | Reasoning |
-|---|---|---|---|
-| [document issues found] | | | |
+**All remaining columns across all tables were reviewed and confirmed to have correct data types, no errors, no duplicate rows, and no additional cleaning requirements.**
 
 ---
 
