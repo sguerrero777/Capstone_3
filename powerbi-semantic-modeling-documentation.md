@@ -1,16 +1,11 @@
 # EmporiUm Analysis with Power BI: ETL & Semantic Modeling Documentation
 
-**Project:** Capstone 3: Analysis with Power BI 
-
-**Datasets:** `Capstone3_Sample_Sales.xlsx` and `book list.txt`
-
-**Scope of Data:** 4-year sales data (January 1, 2022 – Decemebr 31, 2025) 
-
-**Region:** South
-
-**Territories:** Florida, South Carolina, & Texas
-
-**Author:** Sharleen Guerrero  
+- **Project:** Capstone 3: Analysis with Power BI 
+- **Datasets:** `Capstone3_Sample_Sales.xlsx` and `book list.txt`
+- **Scope of Data:** 4-year sales data (January 1, 2022 – Decemebr 31, 2025)
+- **Region:** South
+- **Territories:** Florida, South Carolina, & Texas
+- **Author:** Sharleen Guerrero  
 
 ---
 
@@ -33,7 +28,7 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 | Products | Capstone3_Sample_Sales.xlsx | Products | Dimension table for product catalog |
 | Inventory Categories | Capstone3_Sample_Sales.xlsx | Inventory Categories | Dimension table for category lookup |
 | Store Locations | Capstone3_Sample_Sales.xlsx | Store Locations | Dimension table for store/state mapping |
-| Management Team | Capstone3_Sample_Sales.xlsx | Management Team | Source for derived dimension tables |
+| Region Reference | Manually entered | N/A | Dimension table for region, state, director, and territory manager lookup |
 | Shipper List | Capstone3_Sample_Sales.xlsx | Shipper List | Reference for optional bonus challenge |
 | General Books Reference | book_list.txt | custom-delimited text (*, . and "by") | Dimension table for General Books category products (book titles and authors) |
 
@@ -53,9 +48,12 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 ### 3.2 Online Sales
 
 | Issue | Discovery Method | Resolution | Reasoning |
-| Date was split across Year, Month and Day columns| Initial visual inspection after import | Created a combined custom Date column using Date.From(#date([Year],[Month],[Day])) and dropped original three columns | A single date column per fact table is cleaner and required as the basis for time intelligence |
-| New merged date column defaulted to DateTime data type | Column inspection after custom column was created | Changed data type from DateTime to Date | Only date type is required for clean relationship to furture Date Table |
+|---|---|---|---|
+| Date split across Year, Month, Day columns | Initial visual inspection after import | Created a combined custom Date column using Date.From(#date([Year],[Month],[Day])) and dropped original three columns | A single date column per fact table is required for clean relationship to future Date Table and time intelligence |
+| New merged date column defaulted to DateTime data type | Column inspection after custom column was created | Changed data type from DateTime to Date | Only Date type is required for clean relationship to future Date Table |
 | Join key column named Prod Num on import | Reviewing column names for naming conventions | Renamed column to "Product Number" | Normalized to match other tables and to meet naming conventions for clean relationship building |
+| Sales Total stored as decimal | Column type inspection | Changed to Fixed Decimal Number | Ensures accurate currency representation for measures and visuals |
+| Date column positioned last after merge | Visual inspection | Reordered columns to place Date first | Readability and consistency with Store Sales structure |
 
 ### 3.3 Products
 
@@ -75,21 +73,33 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 ### 3.5 Store Locations
 
 | Issue | Discovery Method | Resolution | Reasoning |
-| Column headers not promoted during import | Column headers not promoted during import | Promoted first row as headers | Source data had appropiately named headers that were not auto-detected |
-| Some State values appeared as abbreviations (MA, ME, CT, NY, MD) instead of full names | Column Quality + value distribution review | Replaced abbreviations with full state names (Massachusetts, Maine, Connecticut, New York, Maryland) | Ensures consistency with other tables (Online Sales, Management Team) and prevents mismatched joins or inconsistent slicer values |
-| Store ID column appeared at the end of the table | Personal preference for modeling clarity | Ensures consistency with other tables (Online Sales, Management Team) and prevents mismatched joins or inconsistent slicer values | Improves navigation and consistency across dimension tables (personal preference to have all keys at the beginning of table) |
+|---|---|---|---|
+| Column headers not promoted during import | Initial visual inspection | Promoted first row as headers | Source data had appropriately named headers that were not auto-detected |
+| Some State values appeared as abbreviations (MA, ME, CT, NY, MD) instead of full names | Value distribution review | Replaced abbreviations with full state names (Massachusetts, Maine, Connecticut, New York, Maryland) | Ensures consistency with Online Sales and Management Team tables for clean joins and slicer values |
+| Store ID column appeared at the end of the table | Personal preference for modeling clarity | Moved Store ID to first column | Improves navigation and consistency across dimension tables |
 
-### 3.6 Management Team
+### 3.6 Region Reference
 
 | Issue | Discovery Method | Resolution | Reasoning |
 |---|---|---|---|
-| [document issues found] | | | |
+| Source table called "Management Team" had nulls in Region and Director due to Excel structure | Initial visual inspection | Built standalone Region Reference table manually using Enter Data and deleted source table | Fill Down and merge approaches failed due to ungrouped source data; manual entry guaranteed zero nulls and no query dependencies |
 
-### 3.7 General Books Reference
+
+### 3.7 Shipper List
 
 | Issue | Discovery Method | Resolution | Reasoning |
 |---|---|---|---|
-| [document issues found] | | | |
+| Column headers not promoted on import | Visual inspection | Promoted first row as headers | Data types correctly auto-identified after promotion |
+
+### 3.8 General Books Reference
+
+| Issue | Discovery Method | Resolution | Reasoning |
+|---|---|---|---|
+| Issue | Discovery Method | Resolution | Reasoning |
+|---|---|---|---|
+| Book titles and authors stored in single column in format "* Title * by Author" | Visual inspection of raw text file | Split column three times using custom delimiters (*, ., and "by") to isolate Book Title and Author Name | Required two separate columns for join and display in top-sellers visual |
+| Leading/trailing whitespace after splitting | Post-split inspection | Applied Trim transformation to both columns | Prevents invisible whitespace from breaking joins or displaying incorrectly |
+| Column names were generic after splitting | Initial visual inspection | Renamed to "Book Title" and "Author Name" | Clear names improve model readability |
 
 **All remaining columns across all tables were reviewed and confirmed to have correct data types, no errors, no duplicate rows, and no additional cleaning requirements.**
 
@@ -97,11 +107,10 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 
 ## 4. Scope Filtering
 
-**Assigned region:** [your region per the brief]  
-**States in scope:** [list]  
-**Filter applied:** [describe how you filtered fact tables to scope]  
-**Rationale:** Loading only in-scope rows keeps the model accurate and performant.
-
+**Assigned region:** South
+**States in scope:** Texas, South Carolina, Florida
+**Filter applied:** Merged Store Locations on to Store Sales query using a Left Outer join on primary key Store ID. Expanded the new merged column to bring in Territory names only, filtering to South territories only.
+**Rationale:** Loading only in-scope rows keeps the model accurate to the assigned South region  and prevents unrelated store transactions from inflating visuals and measures.
 ---
 
 ## 5. Data Model Design
