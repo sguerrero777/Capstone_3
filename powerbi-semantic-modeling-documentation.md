@@ -21,16 +21,15 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 
 ## 2. Data Sources
 
-| Query Name | Source File | Source Sheet / Type |
-|---|---|---|---|
-| Store Sales | Capstone3_Sample_Sales.xlsx | Store Sales |
-| Online Sales | Capstone3_Sample_Sales.xlsx | Online Sales |
-| Products | Capstone3_Sample_Sales.xlsx | Products |
-| Inventory Categories | Capstone3_Sample_Sales.xlsx | Inventory Categories | 
-| Store Locations | Capstone3_Sample_Sales.xlsx | Store Locations |
-| Region Reference | Manually entered | N/A | 
-| Shipper List | Capstone3_Sample_Sales.xlsx | Shipper List |
-| General Books Reference | book_list.txt | custom-delimited text (*, . , and "by") |
+## 2. Data Sources
+
+| Source File | Sheets / Queries | Contents |
+|---|---|---|
+| Capstone3_Sample_Sales.xlsx | Store Sales, Online Sales, Products, Inventory Categories, Store Locations, Shipper List | Transaction records, product catalog, store/state mapping, category lookup, and shipping reference |
+| book_list.txt | General Books Reference | Book titles and authors (custom-delimited: *, . and "by") |
+
+**Note:** Region Reference table was manually entered using Power BI's Enter Data feature, sourced from original Management Team sheet data.
+
 ---
 
 ## 3. Data Cleaning Decisions
@@ -140,22 +139,23 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 | Shipper List | Reference | Bonus challenge only; not connected to core model |
 
 ### 5.4 Relationships
-
 | From (many side) | To (one side) | Join Column | Notes |
 |---|---|---|---|
-| Store Sales | DateTable | Date | |
-| Online Sales | DateTable | Date | |
-| Store Sales | Products | Prod Num | |
-| Online Sales | Products | Prod Num | |
-| Store Sales | Store Locations | Store ID | |
-| [others] | | | |
+| Store Sales | DateTable | Transaction Date to Date | Single filter direction |
+| Online Sales | DateTable | Date to Date | Single filter direction |
+| Store Sales | Products | Product Number | Single filter direction |
+| Online Sales | Products | Product Number | Single filter direction |
+| Store Sales | Store Locations | Store ID | Single filter direction |
+| Store Locations | Region Reference | Territory | Single filter direction |
+| Products | Inventory Categories | Category | Single filter direction |
+
 
 ### 5.5 Tables Left Unconnected
-
 | Table | Reason |
 |---|---|
-| Shipper List | No join key in fact tables for core model; used for bonus challenge only |
-| [others] | |
+| Shipper List | No join key in core fact tables and main region analysis because this is intended for bonus challenge |
+| General Books Reference | No shared key with fact tables. It used as lookup for top-sellers |
+| Online Sales | Loaded in modelbut excluded from South region analysis |
 
 ---
 
