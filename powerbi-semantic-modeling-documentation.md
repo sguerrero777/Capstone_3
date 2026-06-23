@@ -21,17 +21,16 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 
 ## 2. Data Sources
 
-| Query Name | Source File | Source Sheet / Type | Role in Model |
+| Query Name | Source File | Source Sheet / Type |
 |---|---|---|---|
-| Store Sales | Capstone3_Sample_Sales.xlsx | Store Sales | Fact table for in-store transactions |
-| Online Sales | Capstone3_Sample_Sales.xlsx | Online Sales | Fact table for online orders |
-| Products | Capstone3_Sample_Sales.xlsx | Products | Dimension table for product catalog |
-| Inventory Categories | Capstone3_Sample_Sales.xlsx | Inventory Categories | Dimension table for category lookup |
-| Store Locations | Capstone3_Sample_Sales.xlsx | Store Locations | Dimension table for store/state mapping |
-| Region Reference | Manually entered | N/A | Dimension table for region, state, director, and territory manager lookup |
-| Shipper List | Capstone3_Sample_Sales.xlsx | Shipper List | Reference for optional bonus challenge |
-| General Books Reference | book_list.txt | custom-delimited text (*, . and "by") | Dimension table for General Books category products (book titles and authors) |
-
+| Store Sales | Capstone3_Sample_Sales.xlsx | Store Sales |
+| Online Sales | Capstone3_Sample_Sales.xlsx | Online Sales |
+| Products | Capstone3_Sample_Sales.xlsx | Products |
+| Inventory Categories | Capstone3_Sample_Sales.xlsx | Inventory Categories | 
+| Store Locations | Capstone3_Sample_Sales.xlsx | Store Locations |
+| Region Reference | Manually entered | N/A | 
+| Shipper List | Capstone3_Sample_Sales.xlsx | Shipper List |
+| General Books Reference | book_list.txt | custom-delimited text (*, . , and "by") |
 ---
 
 ## 3. Data Cleaning Decisions
@@ -105,32 +104,42 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 
 ---
 
-## 4. Scope Filtering
+### 4. Scope Filtering
 
-**Assigned region:** South
-**States in scope:** Texas, South Carolina, Florida
-**Filter applied:** Merged Store Locations on to Store Sales query using a Left Outer join on primary key Store ID. Expanded the new merged column to bring in Territory names only, filtering to South territories only.
-**Rationale:** Loading only in-scope rows keeps the model accurate to the assigned South region  and prevents unrelated store transactions from inflating visuals and measures.
+- **Assigned region:** South
+- **States in scope:** Texas, South Carolina, Florida
+- **Filter applied:** Merged Store Locations on to Store Sales query using a Left Outer join on primary key Store ID. Expanded the new merged column to bring in Territory names only, filtering to South territories only.
+- **Rationale:** Loading only in-scope rows keeps the model accurate to the assigned South region  and prevents unrelated store transactions from inflating visuals and measures.
 ---
 
 ## 5. Data Model Design
 
-### 5.1 Star Schema Diagram
+### 5.1 Date Table
+| Table | Role | Reasoning |
+|---|---|---|
+| DateTable | Dimension | DAX-generated using CALENDAR(DATE(2022,1,1), DATE(2025,12,31)) covering entire data scope. Includes Year, Month Number, Month Name, Year-Month, Year-Month Number, Quarter, Weekday Name, and Weekday Number. Marked as date table to enable time intelligence. Month Name sorted by Month Number for correct calendar order in visuals. Year-Month sorted by Year-Month Number for correct chronological order on x-axis. |
+
+
+### 5.2 Star Schema Diagram
 
 [embed schema_diagram.png here once built in Excalidraw]
 
-### 5.2 Table Classifications
+### 5.3 Table Classifications
 
+### 5.3 Table Classifications
 | Table | Role | Reasoning |
 |---|---|---|
-| Store Sales | Fact | Each row = one in-store transaction |
-| Online Sales | Fact | Each row = one online order |
-| DateTable | Dimension | One row per calendar date; built via CALENDAR() |
-| Products | Dimension | One row per unique product |
-| Store Locations | Dimension | One row per store with state mapping |
-| [others] | | |
+| Store Sales | Fact | Each row is an event, one in-store transaction with date, product, and sale amount |
+| Online Sales | Fact | Each row is an event, one online order. However, it is excluded from South region analysis because online sales belong to West region |
+| DateTable | Dimension | One row per calendar date; DAX-generated |
+| Products | Dimension | One row per unique product with category and subcategory |
+| Store Locations | Dimension | One row per store with city, state, and Store ID |
+| Region Reference | Dimension | One row per state/territory with region, director, and manager |
+| Inventory Categories | Dimension | One row per category with description |
+| General Books Reference | Dimension | One row per book title with author name |
+| Shipper List | Reference | Bonus challenge only; not connected to core model |
 
-### 5.3 Relationships
+### 5.4 Relationships
 
 | From (many side) | To (one side) | Join Column | Notes |
 |---|---|---|---|
@@ -141,7 +150,7 @@ EmporiUm is a virtual student bookstore operating both in-store and online chann
 | Store Sales | Store Locations | Store ID | |
 | [others] | | | |
 
-### 5.4 Tables Left Unconnected
+### 5.5 Tables Left Unconnected
 
 | Table | Reason |
 |---|---|
