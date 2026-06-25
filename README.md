@@ -40,7 +40,7 @@ including cleaning decisions, modeling reasoning, and DAX measure definition
 ## Power BI Report
 Published to the Year Up United class workspace in Power BI Service.
 
-**Live Report:** [EmporiUm South Region Sales Analysis](paste your Power BI Service URL here)
+**Live Report:** [EmporiUm South Region Sales Analysis](https://app.powerbi.com/links/NfKbc1Sd9f?ctid=bbce5c37-f181-4d0c-9310-7f877336e1cf&pbi_source=linkShare)
 
 The report consists of three pages:
 - **Page 1 — Sales Performance Overview:** Line chart (fiscal trend), pie chart 
@@ -51,6 +51,7 @@ book sales trend line chart, decomposition tree, and KPI cards for Books (Genera
 - **Page 3 — Executive Summary:** Territory revenue by year bar chart, Key Influencers 
 visual, KPI cards (YoY Growth, Best Quarter, Highest Revenue Month, Region YTD), 
 and strategic recommendations text box
+- **You may need to request access**
 
 ## Video Demo
 [Link to be added after recording]
