@@ -165,7 +165,7 @@ All measures are stored in the **Report Measures** table. All measures referenci
 | General Books Sales | `General Books Sales = CALCULATE([Total Region Sales], 'Store Sales'[Category] = "Books (General)")` | Revenue from Books (General) category only |
 | Books % of Total Revenue | `Books % of Total Revenue = DIVIDE([General Books Sales],[Total Region Sales])` | General books as a share of total South region revenue |
 | Average Book Value | `Average Book Value = DIVIDE([General Books Sales], CALCULATE(COUNTROWS('Store Sales'), 'Store Sales'[Category] = "Books (General)"))` | Average transaction value for book sales |
-| Top Book | `Top Book = CALCULATE(SELECTEDVALUE('Products'[Product]), TOPN(1, ALL('Products'[Product]), CALCULATE(COUNTROWS('Store Sales')), DESC), 'Products'[Category] = "Books (General)")` | Title of the best-selling general book by transaction count |
+| Top Book | `Top Book = CALCULATE(SELECTEDVALUE('Products'[Product]), TOPN(1, FILTER(ALL('Products'[Product], 'Products'[Author Name]), 'Products'[Author Name] <> BLANK()), [Total Region Sales], DESC))` | Title of the best-selling general book by sales |
 | YoY Growth % | `YoY Growth % = DIVIDE([Total Region Sales] - [Prior Year Sales], [Prior Year Sales])` | Year-over-year revenue growth percentage |
 | Best Quarter | `Best Quarter = CALCULATE(SELECTEDVALUE('DateTable'[Quarter]), TOPN(1, ALL('DateTable'[Quarter]), [Total Region Sales]))` | Quarter with highest total revenue |
 | Highest Revenue Month | `Highest Revenue Month = CALCULATE(SELECTEDVALUE('DateTable'[Month Name]), TOPN(1, ALL('DateTable'[Month Name]), [Total Region Sales]))` | Month with highest total revenue |
