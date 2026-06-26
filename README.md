@@ -62,7 +62,7 @@ and strategic recommendations text box
 - **You may need to request access**
 
 ## Video Demo
-[Link to be added after recording]
+[Recorded Presentation Link](https://yearuptemp-my.sharepoint.com/:v:/g/personal/sguerrero_my_yearupunited_org/IQDDAaZdIkr2SKflb3K-zGj5AWvKBgwfihKwsaiHY9i2OhM?e=KiZt7z&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)]
 
 ## Author
 Sharleen Guerrero | Year Up United Data Analytics Academy
