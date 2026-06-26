@@ -12,11 +12,19 @@ across multiple territories. I was assigned to conduct a comprehensive analysis 
 - **Scope of Analysis:** In-Store Sales | January 1, 2022 – December 31, 2025
 
 ## Executive Summary
-- **Top Territory:** Florida ($3.93M, 49.15% of total revenue)
-- **Top Store:** Beaumont, TX ($637,819 — #1 individual store region-wide)
-- **Top Category:** Technology & Accessories ($5.68M, 71% of total revenue)
-- **Top General Book:** Harry Potter and the Sorcerer's Stone by J.K. Rowling ($4,366, 151 transactions)
-- **Revenue Trend:** $8.00M total over 4 years. Grew from $1.28M in 2022 to $2.96M in 2025 (+122%). 2024 was nearly flat (+0.3%) before a +58% surge in 2025 driven primarily by Technology & Accessories.
+| Metric | Value |
+|---|---|
+| Total Region Sales | $8.00M (4 calendar years) |
+| Total Transactions | 57,300 |
+| Total Stores | 24 (FL: 11, TX: 11, SC: 2) |
+| Top Territory | Florida — $3.93M (49.15%) |
+| Top Store | Beaumont, TX — $637,819 |
+| Top Category | Technology & Accessories — $5.68M (71% of revenue) |
+| Top General Book | Harry Potter and the Sorcerer's Stone — J.K. Rowling ($4,366, 151 transactions) |
+| Best Quarter | Q4 — $2.18M (combined across all years) |
+| Peak Month | October — $819K (combined across all years) |
+| Largest YoY Growth 2025 | +58% ($1.88M → $2.96M) |
+| Revenue Trend | Overall +122% growth from 2022 to 2025. 2024 flat (+0.3%), 2025 surged (+58%) |
 
 ## Table of Contents
 - `Guerrero_Capstone3.pbix` — Final Power BI report with all visuals, 
